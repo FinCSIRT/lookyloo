@@ -13,11 +13,12 @@
     "admin_only": true
   },
   "VirusTotal": {
-    "apikey": null,
+    "apikey": "9e329bfcbef802fadbf0fb61afb760bee1d75f53382197a3def1b58bbd2a9417",
     "trustenv": false,
     "autosubmit": false,
     "allow_auto_trigger": false,
-    "admin_only": true
+    "admin_only": true,
+    "enabled": true
   },
   "PhishingInitiative": {
     "apikey": null,
@@ -73,38 +74,39 @@
     }
   },
   "UniversalWhois": {
-    "enabled": false,
-    "ipaddress": "127.0.0.1",
-    "port": 4243,
-    "allow_auto_trigger": false,
+    "enabled": true,
+    "ipaddress": "uwhoisd",
+    "port": 4343,
+    "allow_auto_trigger": true,
     "admin_only": false
   },
   "IPASNHistory": {
-    "enabled": false,
+    "enabled": true,
     "url": "https://ipasnhistory.circl.lu/"
   },
   "UrlScan": {
-    "apikey": null,
-    "autosubmit": false,
-    "allow_auto_trigger": false,
-    "force_visibility": false,
-    "admin_only": true
+    "apikey": "019a1f7b-9c20-731c-a6f2-19b11326ac1c",
+    "autosubmit": true,
+    "allow_auto_trigger": true,
+    "force_visibility": "unlisted",
+    "admin_only": true,
+    "enabled": true
   },
   "Phishtank": {
-    "enabled": false,
+    "enabled": true,
     "url": "https://phishtankapi.circl.lu/",
     "allow_auto_trigger": true,
     "admin_only": false
   },
   "URLhaus": {
-    "enabled": false,
+    "enabled": true,
     "url": "https://urlhaus-api.abuse.ch/v1/",
     "allow_auto_trigger": true,
     "admin_only": false,
-    "apikey": null
+    "apikey": "7f24b72bfd53ed9da499d2b15364bb2dfc0f8607a896a7aa"
   },
   "Hashlookup": {
-    "enabled": false,
+    "enabled": true,
     "url": "https://hashlookup.circl.lu/",
     "allow_auto_trigger": true,
     "admin_only": false
@@ -113,7 +115,8 @@
     "user": null,
     "password": null,
     "allow_auto_trigger": true,
-    "admin_only": false
+    "admin_only": false,
+    "enabled": true
   },
   "Cloudflare": {
     "enabled": true,
@@ -139,6 +142,7 @@
     "CIRCLPDNS": "Module to query CIRCL Passive DNS (https://www.circl.lu/services/passive-dns/)",
     "AIL": "Module to submit URLs to AIL Framework (https://github.com/CIRCL/AIL-framework)",
     "IPASNHistory": "Module to query IPASN History (https://ipasnhistory.circl.lu/)",
-    "Cloudflare": "Module to check if an IP is on Cloudflare infrastructure"
+    "Cloudflare": "Module to check if an IP is on Cloudflare infrastructure",
+    "enabled": "You need to add this key to most modules and set it to true to enable them."
   }
 }

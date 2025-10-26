@@ -1,14 +1,19 @@
 {
   "loglevel": "INFO",
   "only_global_lookups": true,
-  "public_instance": false,
-  "public_domain": "lookyloo.myorg.local",
+  "public_instance": true,
+  "public_domain": "lookyloo.fincident.org",
   "website_listen_ip": "0.0.0.0",
   "website_listen_port": 5100,
   "systemd_service_name": "lookyloo",
   "default_public": true,
   "index_is_capture": false,
-  "users": {},
+  "users": {
+    "n8n_user": [
+      "5A1ntl1n6-j3Er5-H0v3r-u6l1-10d1D3",
+      "b8e3a7f9d4c1e0a8b5d3c7f9a1b2e8d6f4a7c1e9b8d3a5f7e0c2b4a6d8e1f0a3"
+    ]
+  },
   "time_delta_on_index": {
     "weeks": 1,
     "days": 0,
@@ -35,11 +40,12 @@
     "remote_lacus": [
       {
         "name": "Lacus local",
-        "url": "http://127.0.0.1:7100"
+        "url": "http://lacus:7100"
       },
       {
-        "name": "Other Lacus",
-        "url": "http://127.0.0.1:17100"
+        "name": "Hungarian Proxy",
+        "url": "http://lacus:7100",
+        "proxy": "socks5://user:pass@your-hungarian-proxy.com:1080"
       }
     ]
   },
@@ -66,8 +72,8 @@
     "password": ""
   },
   "email": {
-    "from": "Lookyloo <lookyloo@myorg.local>",
-    "to": "Investigation Team <investigation_unit@myorg.local>",
+    "from": "Lookyloo <lookyloo@fincident.org>",
+    "to": "Investigation Team <investigation@fincident.org>",
     "subject": "Capture from Lookyloo to review",
     "smtp_host": "localhost",
     "smtp_port": "25",
@@ -95,7 +101,7 @@
     "users": {
       "_default_auth": 5,
       "_default_anon": 0,
-      "admin": 10
+      "n8n_user": 10
     }
   },
   "hide_captures_with_error": false,
@@ -123,7 +129,7 @@
     "systemd_service_name": "(Optional) Name of the systemd service if your project has one.",
     "default_public": "If true, the capture is public and will be visible on the index page by default (can be unticked on the capture page).",
     "index_is_capture": "If true, the capture page is the default landing page (faster for big instances).",
-    "users": "It is some kind of an admin accounts. Format: {username: password}",
+    "users": "It is some kind of an admin accounts. Format: {username: [password, apikey]}",
     "time_delta_on_index": "Time interval of the capture displayed on the index",
     "async_capture_processes": "Number of async_capture processes to start. This should not be higher than the number of splash instances you have running. A very high number will use *a lot* of ram.",
     "use_user_agents_users": "Only usable for medium/high use instances: use the user agents of the users of the platform",
@@ -139,7 +145,7 @@
     "monitoring": "Enable connection to a remote monitoring instance",
     "tor_proxy": "[Ignored if remote Lacus instance] URL to connect to a SOCKS 5 proxy for tor.",
     "i2p_proxy": "[Ignored if remote Lacus instance] URL to connect to an HTTP proxy for i2p.",
-    "trusted_timestamp_settings": "[URL Ignored if remote Lacus instance] Settings to connect to a TimeStamp Authority.",
+    "trusted_timestamp_settings": "https://linuxcontainers.org/incus/docs/main/remotes/ Settings to connect to a TimeStamp Authority.",
     "force_trusted_timestamp": "[If enabled and/or supported in Lacus] Always trigger a call to get trusted timestamps for each capture.",
     "global_proxy": "Proxy configuration to use for *all* the requests (except .onions) - If you capture via a lacus instance, this value is ignored",
     "email": "Configuration for sending email notifications.",

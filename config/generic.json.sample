@@ -8,12 +8,10 @@
   "systemd_service_name": "lookyloo",
   "default_public": true,
   "index_is_capture": false,
-  "users": {
-    "n8n_user": [
+  "n8n_user": [
       "kRcrht7rqHGhZrafV7G75xBDfhLd",
       "b8e3a7f9d4c1e0a8b5d3c7f9a1b2e8d6f4a7c1e9b8d3a5f7e0c2b4a6d8e1f0a3"
-    ]
-  },
+    ],
   "time_delta_on_index": {
     "weeks": 1,
     "days": 0,

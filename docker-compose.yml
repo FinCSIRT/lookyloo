@@ -1,4 +1,4 @@
-version: '3'
+# I removed 'version: "3"' as it's obsolete in modern Docker Compose.
 services:
 
   redis-cache:
@@ -7,6 +7,11 @@ services:
     command: ./cache.conf --daemonize no
     volumes:
         - ./cache:/cache
+    # --- ⬇️ CHANGE ⬇️ ---
+    # Added this service to the dokploy-network so 'lookyloo'
+    # can find it by its name.
+    networks:
+      - dokploy-network
 
   redis-indexing:
     image: valkey/valkey:latest
@@ -14,17 +19,22 @@ services:
     command: ./indexing.conf --daemonize no
     volumes:
         - ./indexing:/indexing
+    # --- ⬇️ CHANGE ⬇️ ---
+    # Added this service to the dokploy-network so 'lookyloo'
+    # can find it by its name.
+    networks:
+      - dokploy-network
 
   lookyloo:
     build: .
     working_dir: /lookyloo
     tty: true
     command:
-        - /bin/sh
-        - -c
-        - |
-            poetry run start
-            tail -F ./LICENSE
+      - /bin/sh
+      - -c
+      - |
+          poetry run start
+          tail -F ./LICENSE
     volumes:
         - ./cache:/lookyloo/cache
         - ./indexing:/lookyloo/indexing
@@ -36,7 +46,24 @@ services:
         - ./logs:/lookyloo/logs
         - ./logs_web:/lookyloo/website/logs
     ports:
+        # ℹ️ NOTE: This is the port your n8n workflow will use.
         - "5100:5100"
     links:
         - "redis-cache"
         - "redis-indexing"
+
+    # --- ⬇️ CHANGE ⬇️ ---
+    # Added this service to the 'dokploy-network'. This allows
+    # other containers (like n8n) on the same network to find
+    # this container by its service name: 'lookyloo'.
+    networks:
+      - dokploy-network
+
+# --- ⬇️ CHANGE ⬇️ ---
+# This top-level 'networks' block tells Docker Compose that
+# 'dokploy-network' is an "external" network that already exists
+# (it was created by Dokploy) and should be used, not created.
+networks:
+  dokploy-network:
+    external: true
+
